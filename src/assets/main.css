@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400..700;1,400..700&display=swap');
+@import "tailwindcss";
 @import './base.css';
 
 #app {
   /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
+  font-family: "Brygada", serif;
 }
 
 a,

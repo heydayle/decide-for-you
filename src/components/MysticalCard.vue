@@ -1,17 +1,21 @@
 <template>
   <div class="mystical-container">
     <div class="mystical-background"></div>
-
-    <h1 class="title">The Oracle's Guidance</h1>
-
-    <transition name="fade">
-      <div v-if="!cardsDealt && !selectedCard" class="intro-message">
-        <p>Seek wisdom from the divine. The cards hold your answers.</p>
-        <button @click="shuffleAndDeal" class="mystical-button">
-          <span class="button-text">Consult the Oracle</span>
-        </button>
+      <div class="fixed top-10 text-center z-10">
+        <h1 class="title !mb-2">The Devaloka's Guidance</h1>
+        <p class="mt-0 text-2xl">Seek wisdom from the divine. The cards hold your answers.</p>
+        <transition name="fade">
+          <div v-if="!shuffling && !cardsDealt && !selectedCard" class="intro-message !mt-4">
+            <button @click="shuffleAndDeal" class="mystical-button">
+              <span class="button-text">Consult the Oracle</span>
+            </button>
+          </div>
+        </transition>
       </div>
-    </transition>
+      <div class="fixed bottom-0 z-10">
+        <a href="https://thinh.io.vn">@Thinh Le</a>
+      </div>
+
 
     <div class="cards-container" :class="{ dealt: cardsDealt }">
       <transition-group name="card" tag="div" class="cards-layout">
@@ -24,6 +28,7 @@
             'card-front': card.revealed,
             selected: selectedCardIndex === index,
             unselected: selectedCardIndex !== null && selectedCardIndex !== index,
+            'shuffle-card': shuffling
           }"
           :style="getCardStyle(index)"
           @click="selectCard(index)"
@@ -35,15 +40,23 @@
               <div class="card-symbol"></div>
             </div>
             <div class="card-front-face">
-              <h3>{{ card.title }}</h3>
-              <p>{{ card.message }}</p>
+              <h3 class="magic-text" :class="selectedCardIndex || selectedCardIndex === 0 ? 'block' : 'hidden'">
+                <span v-for="(item, index) in card.title.split(' ')" :key="index" :class="selectedCard ? 'inline-block' : 'hidden'" :style="`animation-delay: ${index < 1 ? 1 : 1 + index*0.15}s`">
+                  {{ item }} <span> </span>
+                </span>
+              </h3>
+              <p class="magic-text" :class="selectedCardIndex || selectedCardIndex === 0 ? 'block' : 'hidden'">
+                <span v-for="(item, index) in card.message.split(' ')"  :class="selectedCard ? 'inline-block' : 'hidden'" :key="index" :style="`animation-delay: ${index < 1 ? 2 : 2 + index*0.15}s`">
+                  {{ item }} <span> </span>
+                </span>
+              </p>
             </div>
           </div>
         </div>
       </transition-group>
     </div>
 
-    <button v-if="selectedCard" @click="resetCards" class="mystical-button reset-button">
+    <button v-if="selectedCard" @click="shuffleAndDeal" class="mystical-button reset-button">
       <span class="button-text">Consult Again</span>
     </button>
   </div>
@@ -62,6 +75,7 @@ export default {
     const cardsDealt = ref(false)
     const selectedCardIndex = ref(null)
     const hoveredCardIndex = ref(null)
+    const shuffling = ref(false);
 
     const selectedCard = computed(() => {
       if (selectedCardIndex.value !== null) {
@@ -71,25 +85,34 @@ export default {
     })
 
     function shuffleAndDeal() {
+      resetCards()
       // Reset state
-      selectedCardIndex.value = null
+      selectedCardIndex.value = null;
 
       // Create a copy of the cards data and shuffle it
       const shuffled = [...cardsData]
-        .map((card) => ({ ...card, revealed: false, hovered: false }))
-        .sort(() => Math.random() - 0.5)
+        .map(card => ({ ...card, revealed: false }))
+        .sort(() => Math.random() - 0.5);
 
-      // Take all 50 cards
-      cards.value = shuffled.slice(0, 20)
+      // Take only 5 cards
+      cards.value = shuffled.slice(0, 30);
 
-      // Set cards as dealt after a short delay
+      // Start shuffle animation
+      shuffling.value = true;
+
+      // After shuffle animation completes, deal the cards
       setTimeout(() => {
-        cardsDealt.value = true
-      }, 100)
+        shuffling.value = false;
+
+        // Set cards as dealt after a short delay
+        setTimeout(() => {
+          cardsDealt.value = true;
+        });
+      }, 4000); // Shuffle animation duration
     }
 
     function selectCard(index) {
-      if (!cardsDealt.value || selectedCardIndex.value !== null) return
+      if (!cardsDealt.value || selectedCardIndex.value !== null || shuffling.value) return
 
       selectedCardIndex.value = index
 
@@ -110,6 +133,11 @@ export default {
     }
 
     function getCardStyle(index) {
+      if (shuffling.value) {
+        // During shuffle animation, each card gets a random position
+        // This is handled by CSS, so we just return an empty style
+        return {};
+      }
       if (!cardsDealt.value) {
         // Initial position (stacked)
         return {
@@ -137,8 +165,8 @@ export default {
 
       // Spread out the cards in a fan pattern
       const totalCards = cards.value.length
-      const spreadWidth = 80 // percentage of container width
-      const angle = 120 // maximum rotation angle
+      const spreadWidth = 600 // percentage of container width
+      const angle = 20 // maximum rotation angle
 
       // Calculate position in the fan
       const position = index - (totalCards - 1) / 2
@@ -163,6 +191,7 @@ export default {
       cardsDealt,
       selectedCardIndex,
       selectedCard,
+      shuffling,
       hoveredCardIndex,
       shuffleAndDeal,
       selectCard,
@@ -174,7 +203,31 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+
+@keyframes appearAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(15px) scale(0.2);
+    filter: blur(10px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.05);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.magic-text span {
+  display: inline-block;
+  opacity: 0;
+  animation: appearAnimation 0.5s forwards
+}
+
 .mystical-container {
   min-height: 100vh;
   display: flex;
@@ -185,7 +238,6 @@ export default {
   position: relative;
   overflow: hidden;
   color: #f0e6ff;
-  font-family: 'Cinzel', serif;
 }
 
 .mystical-background {
@@ -253,7 +305,6 @@ export default {
   border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Cinzel', serif;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -290,9 +341,56 @@ export default {
   margin-top: 2rem;
 }
 
+.cards-container.shuffling .card {
+  transition: all 0.3s ease-in-out;
+}
+
+.shuffle-card {
+  animation: shuffle 4s ease-in-out;
+}
+
+@keyframes shuffle {
+  0%, 100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  10% {
+    transform: translateX(-100px) translateY(-50px) rotate(-10deg);
+  }
+  20% {
+    transform: translateX(150px) translateY(30px) rotate(5deg);
+  }
+  30% {
+    transform: translateX(-80px) translateY(80px) rotate(15deg);
+  }
+  40% {
+    transform: translateX(120px) translateY(-100px) rotate(-20deg);
+  }
+  50% {
+    transform: translateX(-150px) translateY(-30px) rotate(10deg);
+  }
+  60% {
+    transform: translateX(100px) translateY(90px) rotate(-15deg);
+  }
+  70% {
+    transform: translateX(-120px) translateY(-70px) rotate(20deg);
+  }
+  80% {
+    transform: translateX(80px) translateY(50px) rotate(-5deg);
+  }
+  90% {
+    transform: translateX(-50px) translateY(-120px) rotate(15deg);
+  }
+}
+
+@for $i from 1 through 30 {
+  .shuffle-card:nth-child(#{$i}) {
+    animation-delay: #{($i - 1) * 0.05}s;
+  }
+}
+
 .cards-container {
   width: 100%;
-  height: 50vh;
+  height: 60vh;
   position: relative;
   perspective: 1000px;
   margin: 2rem 0;
@@ -321,8 +419,8 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 1s;
+  transform-style: preserve-3d ;
+  transition: transform 1s ease-in-out;
 }
 
 .card.selected .card-inner {
