@@ -33,7 +33,11 @@
         >
           <div class="card-inner">
             <div class="card-back-face">
-              <div class="card-symbol"></div>
+              <div class="astro-border"></div>
+              <div class="celestial-circle"></div>
+              <div class="zodiac-wheel"></div>
+              <div class="astro-stars"></div>
+              <div class="moon-phases"></div>
             </div>
             <div class="card-front-face">
               <h3 class="magic-text" :class="selectedCardIndex || selectedCardIndex === 0 ? 'block' : 'hidden'">
@@ -58,14 +62,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import Card from './CardItem.vue'
 import { ref, computed } from 'vue'
 import { decisions } from '@/assets/mock/decides'
 import { useWindowSize } from '@vueuse/core'
 
-export default {
-  name: 'MysticalCards',
-  setup() {
     const cardsData = decisions
 
     const cards = ref([])
@@ -184,22 +186,6 @@ export default {
         zIndex: index,
       }
     }
-
-    return {
-      cards,
-      cardsDealt,
-      selectedCardIndex,
-      selectedCard,
-      shuffling,
-      hoveredCardIndex,
-      shuffleAndDeal,
-      selectCard,
-      resetCards,
-      onCardHover,
-      getCardStyle,
-    }
-  },
-}
 </script>
 
 <style scoped lang="scss">
@@ -235,20 +221,21 @@ export default {
   justify-content: center;
   padding: 2rem;
   position: relative;
+  z-index: 1;
   overflow: hidden;
   color: #f0e6ff;
 }
 
-.mystical-background {
+/*.mystical-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #1a0b2e 0%, #2a1a4a 50%, #3b2a6a 100%);
+  // background: linear-gradient(135deg, #1a0b2e 0%, #2a1a4a 50%, #3b2a6a 100%);
   z-index: -1;
   overflow: hidden;
-}
+}*/
 
 .mystical-background::before {
   content: '';
@@ -441,9 +428,149 @@ export default {
   text-align: center;
 }
 
+/* Astrology-styled card back */
 .card-back-face {
-  background: linear-gradient(135deg, #2a1a4a 0%, #4a2b7e 100%);
+  background: linear-gradient(135deg, #0f0524 0%, #1a0b2e 50%, #2a1a4a 100%);
   border: 3px solid #ffd700;
+  position: absolute;
+}
+
+/* Celestial circle in the center */
+.celestial-circle {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 215, 0, 0.7);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  background: radial-gradient(circle at center, rgba(123, 78, 208, 0.2) 0%, rgba(15, 5, 36, 0.8) 70%);
+  z-index: 1;
+}
+
+/* Zodiac wheel */
+.zodiac-wheel {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%23ffd700' stroke-width='1' stroke-dasharray='4 4'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%23ffd700' stroke-width='1'/%3E%3Cpath d='M100,10 L100,30 M190,100 L170,100 M100,190 L100,170 M10,100 L30,100' stroke='%23ffd700' stroke-width='1'/%3E%3Cpath d='M135,35 L125,45 M165,135 L155,125 M65,165 L75,155 M35,65 L45,75' stroke='%23ffd700' stroke-width='1'/%3E%3Cpath d='M35,135 L45,125 M135,165 L125,155 M165,65 L155,75 M65,35 L75,45' stroke='%23ffd700' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.7;
+  animation: rotate-slow 60s linear infinite;
+  z-index: 2;
+}
+
+@keyframes rotate-slow {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Astrology border with zodiac pattern */
+.astro-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  margin: 8px;
+  border-radius: 10px;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(255, 215, 0, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 90% 10%, rgba(255, 215, 0, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 10% 90%, rgba(255, 215, 0, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 90% 90%, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+  z-index: 3;
+}
+
+/* Starry background effect */
+.astro-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    radial-gradient(circle at 60% 20%, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+    radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+    radial-gradient(circle at 10% 60%, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+    radial-gradient(circle at 30% 90%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Moon phases at the corners */
+.moon-phases {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.moon-phases::before,
+.moon-phases::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+}
+
+.moon-phases::before {
+  top: 20px;
+  left: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23ffd700' stroke-width='2'/%3E%3Cpath d='M50,10 A40,40 0 0,1 50,90 A40,40 0 0,0 50,10' fill='%23ffd700' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.moon-phases::after {
+  bottom: 20px;
+  right: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23ffd700' stroke-width='2'/%3E%3Cpath d='M50,10 A40,40 0 0,0 50,90 A40,40 0 0,1 50,10' fill='%23ffd700' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Add a subtle glow animation to the card back */
+.card-back-face::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(123, 78, 208, 0.1) 0%, rgba(123, 78, 208, 0) 70%);
+  transform-origin: center center;
+  animation: glow 10s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes glow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .card-symbol {
