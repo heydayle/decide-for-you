@@ -713,5 +713,504 @@ export const decisions = [
       "id": 143,
       "title": "Tĩnh lặng",
       "message": "Mọi điều bạn cần biết – đều có trong sự tĩnh lặng của bạn."
+    },{
+      id: 1,
+      title: "Thời Gian",
+      message: "Đầu tư thời gian vào điều quan trọng nhất, không phải điều khẩn cấp nhất."
+    },
+    {
+      id: 2,
+      title: "Cơ Hội",
+      message: "Nắm bắt cơ hội ngay bây giờ, không chờ đợi thời điểm hoàn hảo."
+    },
+    {
+      id: 3,
+      title: "Sự Chọn",
+      message: "Chọn làm điều đúng đắn, không chỉ điều dễ dàng."
+    },
+    {
+      id: 4,
+      title: "Giá Trị",
+      message: "Quyết định dựa trên giá trị cốt lõi, không phải áp lực bên ngoài."
+    },
+    {
+      id: 5,
+      title: "Dừng Lại",
+      message: "Dừng lại khi nhận ra mình đang đi sai hướng, không cố chấp tiếp tục."
+    },
+    {
+      id: 6,
+      title: "Từ Chối",
+      message: "Từ chối những điều không phù hợp với mục tiêu dài hạn của bạn."
+    },
+    {
+      id: 7,
+      title: "Bước Tiến",
+      message: "Tiến lên phía trước mỗi ngày, dù chỉ là một bước nhỏ."
+    },
+    {
+      id: 8,
+      title: "Buông Bỏ",
+      message: "Buông bỏ quá khứ để không cản trở tương lai của bạn."
+    },
+    {
+      id: 9,
+      title: "Tập Trung",
+      message: "Tập trung vào một mục tiêu quan trọng thay vì nhiều mục tiêu trung bình."
+    },
+    {
+      id: 10,
+      title: "Kết Thúc",
+      message: "Kết thúc những mối quan hệ tiêu cực để bắt đầu những điều tích cực."
+    },
+    {
+      id: 11,
+      title: "Bắt Đầu",
+      message: "Bắt đầu ngay hôm nay, không đợi đến ngày mai."
+    },
+    {
+      id: 12,
+      title: "Đặt Mục tiêu",
+      message: "Đặt mục tiêu đủ cao để truyền cảm hứng nhưng đủ thực tế để đạt được."
+    },
+    {
+      id: 13,
+      title: "Tự Chăm sóc",
+      message: "Ưu tiên sức khỏe của bản thân trước khi giúp đỡ người khác."
+    },
+    {
+      id: 14,
+      title: "Thử Thách",
+      message: "Đón nhận thử thách như cơ hội phát triển, không phải rào cản."
+    },
+    {
+      id: 15,
+      title: "Học Hỏi",
+      message: "Học từ thất bại thay vì sợ hãi nó."
+    },
+    {
+      id: 16,
+      title: "Lựa Chọn",
+      message: "Chọn con đường ít người đi nếu nó phù hợp với bạn."
+    },
+    {
+      id: 17,
+      title: "Quan Điểm",
+      message: "Thay đổi góc nhìn khi vấn đề không thể thay đổi."
+    },
+    {
+      id: 18,
+      title: "Đầu Tư",
+      message: "Đầu tư vào kiến thức và kỹ năng, không chỉ vật chất."
+    },
+    {
+      id: 19,
+      title: "Đối Mặt",
+      message: "Đối mặt với nỗi sợ để chúng không còn quyền lực với bạn."
+    },
+    {
+      id: 20,
+      title: "Tin Tưởng",
+      message: "Tin tưởng trực giác của bản thân trong những quyết định quan trọng."
+    },
+    {
+      id: 21,
+      title: "Phân Biệt",
+      message: "Phân biệt giữa mong muốn tức thời và hạnh phúc lâu dài."
+    },
+    {
+      id: 22,
+      title: "Đơn Giản",
+      message: "Đơn giản hóa cuộc sống bằng cách loại bỏ những thứ không cần thiết."
+    },
+    {
+      id: 23,
+      title: "Ưu Tiên",
+      message: "Ưu tiên những việc mang lại giá trị lớn nhất cho cuộc sống của bạn."
+    },
+    {
+      id: 24,
+      title: "Trung Thực",
+      message: "Trung thực với chính mình về điều bạn thực sự muốn."
+    },
+    {
+      id: 25,
+      title: "Quản Lý",
+      message: "Quản lý năng lượng của bạn, không chỉ thời gian."
+    },
+    {
+      id: 26,
+      title: "Xây Dựng",
+      message: "Xây dựng thói quen tốt thay vì dựa vào động lực tạm thời."
+    },
+    {
+      id: 27,
+      title: "Đặt Câu hỏi",
+      message: "Đặt câu hỏi đúng trước khi tìm câu trả lời."
+    },
+    {
+      id: 28,
+      title: "Vượt Qua",
+      message: "Vượt qua sự trì hoãn bằng cách bắt đầu từ nhiệm vụ nhỏ nhất."
+    },
+    {
+      id: 29,
+      title: "Hành Động",
+      message: "Hành động dứt khoát khi có đầy đủ thông tin, không chần chừ thêm."
+    },
+    {
+      id: 30,
+      title: "Chấp Nhận",
+      message: "Chấp nhận những gì không thể thay đổi và tập trung vào điều có thể."
+    },
+    {
+      id: 31,
+      title: "Tài Chính",
+      message: "Chi tiêu dưới khả năng của bạn, không phải bằng hoặc trên nó."
+    },
+    {
+      id: 32,
+      title: "Kết Nối",
+      message: "Ưu tiên kết nối sâu sắc với ít người hơn là nông cạn với nhiều người."
+    },
+    {
+      id: 33,
+      title: "Sáng Tạo",
+      message: "Tạo ra giải pháp của riêng bạn khi không tìm thấy câu trả lời sẵn có."
+    },
+    {
+      id: 34,
+      title: "Dừng Lại",
+      message: "Dừng việc so sánh bản thân với người khác, tập trung vào tiến bộ cá nhân."
+    },
+    {
+      id: 35,
+      title: "Tính Toán",
+      message: "Tính toán rủi ro trước khi đưa ra quyết định quan trọng."
+    },
+    {
+      id: 36,
+      title: "Cân Bằng",
+      message: "Tạo sự cân bằng giữa công việc và cuộc sống cá nhân."
+    },
+    {
+      id: 37,
+      title: "Khởi Đầu",
+      message: "Bắt đầu lại từ đầu khi cần thiết, không bám víu vào sai lầm."
+    },
+    {
+      id: 38,
+      title: "Lắng Nghe",
+      message: "Lắng nghe ý kiến trái chiều để mở rộng tầm nhìn của bạn."
+    },
+    {
+      id: 39,
+      title: "Kiên Nhẫn",
+      message: "Kiên nhẫn với tiến trình, không vội vàng đạt kết quả."
+    },
+    {
+      id: 40,
+      title: "Công Nhận",
+      message: "Công nhận giới hạn của bản thân và biết khi nào cần hỗ trợ."
+    },
+    {
+      id: 41,
+      title: "Từ Bỏ",
+      message: "Từ bỏ những gì không còn phục vụ bạn để tạo không gian cho điều mới."
+    },
+    {
+      id: 42,
+      title: "Phá Vỡ",
+      message: "Phá vỡ những khuôn mẫu cũ để tạo ra thay đổi thực sự."
+    },
+    {
+      id: 43,
+      title: "Tự Tin",
+      message: "Tin vào khả năng của bản thân ngay cả khi không ai khác tin."
+    },
+    {
+      id: 44,
+      title: "Phát Triển",
+      message: "Chọn phát triển bản thân thay vì thoải mái với hiện tại."
+    },
+    {
+      id: 45,
+      title: "Biết Ơn",
+      message: "Tập trung vào điều bạn đã có thay vì những gì bạn thiếu."
+    },
+    {
+      id: 46,
+      title: "Thành Thật",
+      message: "Thành thật về sai lầm để học hỏi và phát triển từ chúng."
+    },
+    {
+      id: 47,
+      title: "Sẵn Sàng",
+      message: "Sẵn sàng thay đổi kế hoạch khi hoàn cảnh thay đổi."
+    },
+    {
+      id: 48,
+      title: "Thích Nghi",
+      message: "Thích nghi với thay đổi thay vì chống lại nó."
+    },
+    {
+      id: 49,
+      title: "Dám Từ chối",
+      message: "Dám nói không với những điều không phục vụ mục đích của bạn."
+    },
+    {
+      id: 50,
+      title: "Không Trì hoãn",
+      message: "Hành động ngay lập tức với những quyết định đã đưa ra."
+    },
+    {
+      id: 51,
+      title: "Kiểm Soát",
+      message: "Kiểm soát phản ứng của bạn, không phải hoàn cảnh bên ngoài."
+    },
+    {
+      id: 52,
+      title: "Thử Nghiệm",
+      message: "Sẵn sàng thử nghiệm cách tiếp cận mới khi cách cũ không hiệu quả."
+    },
+    {
+      id: 53,
+      title: "Đón Nhận",
+      message: "Đón nhận sự không chắc chắn như một phần của cuộc sống."
+    },
+    {
+      id: 54,
+      title: "Biết Dừng",
+      message: "Biết khi nào cần dừng lại và khi nào cần tiếp tục cố gắng."
+    },
+    {
+      id: 55,
+      title: "Kỷ Luật",
+      message: "Xây dựng kỷ luật hàng ngày để đạt được mục tiêu dài hạn."
+    },
+    {
+      id: 56,
+      title: "Không Phán xét",
+      message: "Ngừng phán xét bản thân và người khác quá khắt khe."
+    },
+    {
+      id: 57,
+      title: "Phục Hồi",
+      message: "Cho phép bản thân thời gian để phục hồi sau thất bại."
+    },
+    {
+      id: 58,
+      title: "Cẩn Trọng",
+      message: "Cẩn trọng với những lời khuyên không phù hợp với hoàn cảnh của bạn."
+    },
+    {
+      id: 59,
+      title: "Tư Duy",
+      message: "Phát triển tư duy cầu tiến thay vì tư duy cố định."
+    },
+    {
+      id: 60,
+      title: "Thực Tế",
+      message: "Đặt kỳ vọng thực tế để tránh thất vọng không cần thiết."
+    },
+    {
+      id: 61,
+      title: "Hiểu Biết",
+      message: "Tìm hiểu tất cả các lựa chọn trước khi đưa ra quyết định cuối cùng."
+    },
+    {
+      id: 62,
+      title: "Hội Nhập",
+      message: "Kết hợp các giá trị cá nhân vào quyết định nghề nghiệp của bạn."
+    },
+    {
+      id: 63,
+      title: "Hiện Tại",
+      message: "Sống trong hiện tại thay vì lo lắng về tương lai."
+    },
+    {
+      id: 64,
+      title: "Tập Trung",
+      message: "Loại bỏ những yếu tố gây xao nhãng để tập trung vào mục tiêu."
+    },
+    {
+      id: 65,
+      title: "Tha Thứ",
+      message: "Tha thứ cho người khác và bản thân để tiến về phía trước."
+    },
+    {
+      id: 66,
+      title: "Chịu Trách nhiệm",
+      message: "Nhận trách nhiệm về cuộc sống của bạn thay vì đổ lỗi cho hoàn cảnh."
+    },
+    {
+      id: 67,
+      title: "Thư Giãn",
+      message: "Cho phép bản thân nghỉ ngơi mà không cảm thấy tội lỗi."
+    },
+    {
+      id: 68,
+      title: "Suy Ngẫm",
+      message: "Dành thời gian suy ngẫm trước khi đưa ra quyết định quan trọng."
+    },
+    {
+      id: 69,
+      title: "Tìm Kiếm",
+      message: "Tìm kiếm cơ hội trong mọi thách thức bạn gặp phải."
+    },
+    {
+      id: 70,
+      title: "Đặt Ranh giới",
+      message: "Thiết lập ranh giới rõ ràng trong các mối quan hệ cá nhân và công việc."
+    },
+    {
+      id: 71,
+      title: "Tiến Bước",
+      message: "Tiến về phía trước dù phải với tốc độ chậm."
+    },
+    {
+      id: 72,
+      title: "Nhìn Nhận",
+      message: "Nhìn nhận thực tế một cách khách quan, không phải như bạn muốn."
+    },
+    {
+      id: 73,
+      title: "Biết Đủ",
+      message: "Biết khi nào đã đủ và dừng việc theo đuổi nhiều hơn."
+    },
+    {
+      id: 74,
+      title: "Yêu Thương",
+      message: "Đối xử với bản thân bằng lòng tốt như bạn dành cho người thân."
+    },
+    {
+      id: 75,
+      title: "Tìm Niềm vui",
+      message: "Tìm niềm vui trong quá trình, không chỉ kết quả cuối cùng."
+    },
+    {
+      id: 76,
+      title: "Đường Riêng",
+      message: "Đi theo con đường riêng của bạn, không phải con đường người khác đã vạch ra."
+    },
+    {
+      id: 77,
+      title: "Tự Chủ",
+      message: "Làm chủ cảm xúc để đưa ra quyết định sáng suốt."
+    },
+    {
+      id: 78,
+      title: "Cam Kết",
+      message: "Cam kết với mục tiêu của bạn ngay cả khi khó khăn."
+    },
+    {
+      id: 79,
+      title: "Chất Lượng",
+      message: "Chọn chất lượng thay vì số lượng trong mọi khía cạnh cuộc sống."
+    },
+    {
+      id: 80,
+      title: "Biết Mình",
+      message: "Hiểu rõ điểm mạnh và điểm yếu của bản thân trước khi đưa ra quyết định."
+    },
+    {
+      id: 81,
+      title: "Chiến Thắng",
+      message: "Đánh bại nỗi sợ thất bại bằng cách hành động mỗi ngày."
+    },
+    {
+      id: 82,
+      title: "Nhìn Lại",
+      message: "Nhìn lại quá khứ để học hỏi, không phải để hối tiếc."
+    },
+    {
+      id: 83,
+      title: "Trao Đổi",
+      message: "Giao tiếp rõ ràng về mong đợi và giới hạn của bạn."
+    },
+    {
+      id: 84,
+      title: "Chủ Động",
+      message: "Chủ động giải quyết vấn đề thay vì chờ đợi chúng trở nên tồi tệ hơn."
+    },
+    {
+      id: 85,
+      title: "Mạo Hiểm",
+      message: "Chấp nhận rủi ro có tính toán để đạt được điều lớn lao."
+    },
+    {
+      id: 86,
+      title: "Bền Bỉ",
+      message: "Kiên trì theo đuổi mục tiêu dù gặp trở ngại."
+    },
+    {
+      id: 87,
+      title: "Thay Đổi",
+      message: "Thay đổi môi trường nếu nó không hỗ trợ mục tiêu của bạn."
+    },
+    {
+      id: 88,
+      title: "Thành Công",
+      message: "Định nghĩa thành công theo tiêu chuẩn của riêng bạn, không phải xã hội."
+    },
+    {
+      id: 89,
+      title: "Sức Khỏe",
+      message: "Đặt sức khỏe lên hàng đầu vì nó ảnh hưởng đến mọi quyết định khác."
+    },
+    {
+      id: 90,
+      title: "Khiêm Tốn",
+      message: "Khiêm tốn để học hỏi từ bất kỳ ai và bất kỳ tình huống nào."
+    },
+    {
+      id: 91,
+      title: "Trân Trọng",
+      message: "Trân trọng hành trình, không chỉ điểm đến."
+    },
+    {
+      id: 92,
+      title: "Mạnh Mẽ",
+      message: "Giữ vững lập trường khi bạn biết mình đúng."
+    },
+    {
+      id: 93,
+      title: "Phản Tư",
+      message: "Dành thời gian mỗi ngày để phản tư về các quyết định của bạn."
+    },
+    {
+      id: 94,
+      title: "Tinh Giản",
+      message: "Loại bỏ những gì không cần thiết để tập trung vào điều quan trọng."
+    },
+    {
+      id: 95,
+      title: "Tạo Dựng",
+      message: "Xây dựng cuộc sống bạn muốn, không phải cuộc sống bạn nghĩ bạn nên có."
+    },
+    {
+      id: 96,
+      title: "Vượt Qua",
+      message: "Vượt qua nỗi sợ bị phán xét để sống cuộc sống đích thực."
+    },
+    {
+      id: 97,
+      title: "Tự Do",
+      message: "Chọn tự do thay vì an toàn khi đó là điều phù hợp."
+    },
+    {
+      id: 98,
+      title: "Tập Trung",
+      message: "Hướng năng lượng vào việc tạo ra giải pháp, không phải phàn nàn về vấn đề."
+    },
+    {
+      id: 99,
+      title: "Làm Chủ",
+      message: "Làm chủ cuộc sống của bạn thông qua những quyết định có ý thức."
+    },
+    {
+      id: 100,
+      title: "Dũng Cảm",
+      message: "Dũng cảm theo đuổi ước mơ của bạn ngay cả khi không ai tin tưởng."
     }
   ];

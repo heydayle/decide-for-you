@@ -2,7 +2,7 @@
   <div class="mystical-container">
     <div class="mystical-background"></div>
       <div class="fixed top-10 text-center z-10">
-        <h1 class="title !mb-2">The Devaloka's Guidance</h1>
+        <h1 class="title !mb-2">The <a href="https://thinh.io.vn" target="_blank">Devaloka's</a> Guidance</h1>
         <p class="mt-0 text-2xl">Seek wisdom from the divine. The cards hold your answers.</p>
         <transition name="fade">
           <div v-if="!shuffling && !cardsDealt && !selectedCard" class="intro-message !mt-4">
@@ -12,10 +12,6 @@
           </div>
         </transition>
       </div>
-      <div class="fixed bottom-0 z-10">
-        <a href="https://thinh.io.vn">@Thinh Le</a>
-      </div>
-
 
     <div class="cards-container" :class="{ dealt: cardsDealt }">
       <transition-group name="card" tag="div" class="cards-layout">
@@ -65,6 +61,7 @@
 <script>
 import { ref, computed } from 'vue'
 import { decisions } from '@/assets/mock/decides'
+import { useWindowSize } from '@vueuse/core'
 
 export default {
   name: 'MysticalCards',
@@ -76,6 +73,8 @@ export default {
     const selectedCardIndex = ref(null)
     const hoveredCardIndex = ref(null)
     const shuffling = ref(false);
+
+    const { width } = useWindowSize()
 
     const selectedCard = computed(() => {
       if (selectedCardIndex.value !== null) {
@@ -95,7 +94,7 @@ export default {
         .sort(() => Math.random() - 0.5);
 
       // Take only 5 cards
-      cards.value = shuffled.slice(0, 30);
+      cards.value = shuffled.slice(0, width.value < 500 ? 10 : 30);
 
       // Start shuffle animation
       shuffling.value = true;
@@ -119,7 +118,7 @@ export default {
       // Reveal the card after it moves to center
       setTimeout(() => {
         cards.value[index].revealed = true
-      }, 800)
+      }, 2000)
     }
 
     function resetCards() {
@@ -165,8 +164,8 @@ export default {
 
       // Spread out the cards in a fan pattern
       const totalCards = cards.value.length
-      const spreadWidth = 600 // percentage of container width
-      const angle = 20 // maximum rotation angle
+      const spreadWidth = width.value < 500 ? 100 : 600 // percentage of container width
+      const angle = width.value < 500 ? 80 : 20 // maximum rotation angle
 
       // Calculate position in the fan
       const position = index - (totalCards - 1) / 2
