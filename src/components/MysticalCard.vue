@@ -433,6 +433,7 @@ import { useWindowSize } from '@vueuse/core'
   background: linear-gradient(135deg, #0f0524 0%, #1a0b2e 50%, #2a1a4a 100%);
   border: 3px solid #ffd700;
   position: absolute;
+  z-index: 1;
 }
 
 /* Celestial circle in the center */
@@ -463,7 +464,7 @@ import { useWindowSize } from '@vueuse/core'
   background-position: center;
   opacity: 0.7;
   animation: rotate-slow 60s linear infinite;
-  z-index: 2;
+  z-index: 1;
 }
 
 @keyframes rotate-slow {
@@ -586,6 +587,8 @@ import { useWindowSize } from '@vueuse/core'
   background: linear-gradient(135deg, #7b4ed0 0%, #4a2b7e 100%);
   border: 3px solid #ffd700;
   transform: rotateY(180deg);
+  position: absolute;
+  z-index:5;
 }
 
 .card-front-face h3 {
