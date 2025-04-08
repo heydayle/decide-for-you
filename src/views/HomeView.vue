@@ -1,9 +1,7 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import MysticalCard from '../components/MysticalCard.vue'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <MysticalCard />
 </template>
