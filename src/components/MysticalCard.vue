@@ -5,9 +5,9 @@
         <h1 class="title !mb-2">The <a href="https://thinh.io.vn" target="_blank">Devaloka's</a> Guidance</h1>
         <p class="mt-0 text-2xl">Seek wisdom from the divine. The cards hold your answers.</p>
         <transition name="fade">
-          <div v-if="!shuffling && !cardsDealt && !selectedCard" class="intro-message !mt-4">
+          <div v-if="!shuffling && !cardsDealt && !selectedCard" class="intro-message !mt-4 !m-auto">
             <button @click="shuffleAndDeal" class="mystical-button">
-              <span class="button-text">Consult the Oracle</span>
+              <span class="button-text">Xào bài</span>
             </button>
           </div>
         </transition>
@@ -40,6 +40,7 @@
               <div class="moon-phases"></div>
             </div>
             <div class="card-front-face">
+              <div class="astro-border"></div>
               <h3 class="magic-text" :class="selectedCardIndex || selectedCardIndex === 0 ? 'block' : 'hidden'">
                 <span v-for="(item, index) in card.title.split(' ')" :key="index" :class="selectedCard ? 'inline-block' : 'hidden'" :style="`animation-delay: ${index < 1 ? 1 : 1 + index*0.15}s`">
                   {{ item }} <span> </span>
@@ -57,7 +58,7 @@
     </div>
 
     <button v-if="selectedCard" @click="shuffleAndDeal" class="mystical-button reset-button">
-      <span class="button-text">Consult Again</span>
+      <span class="button-text">Chọn lại</span>
     </button>
   </div>
 </template>
@@ -181,7 +182,7 @@ import { useWindowSize } from '@vueuse/core'
         transform: `translateX(${xPercent}%) translateY(${yOffset}px) rotate(${rotation}deg)`,
         boxShadow:
           hoveredCardIndex.value === index
-            ? '0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.5)'
+            ? '0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 1)'
             : '0 10px 30px rgba(0, 0, 0, 0.5)',
         zIndex: index,
       }
@@ -268,12 +269,6 @@ import { useWindowSize } from '@vueuse/core'
   color: #ffd700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
   letter-spacing: 2px;
-}
-
-.intro-message {
-  text-align: center;
-  max-width: 600px;
-  margin-bottom: 2rem;
 }
 
 .intro-message p {
@@ -584,10 +579,11 @@ import { useWindowSize } from '@vueuse/core'
 }
 
 .card-front-face {
-  background: linear-gradient(135deg, #7b4ed0 0%, #4a2b7e 100%);
+  background: linear-gradient(135deg, #353535 0%, #040405 100%);
   border: 3px solid #ffd700;
   transform: rotateY(180deg);
   position: absolute;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
   z-index:5;
 }
 
