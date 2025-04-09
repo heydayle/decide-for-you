@@ -1,17 +1,21 @@
 <template>
   <div class="mystical-container">
     <div class="mystical-background"></div>
-      <div class="fixed top-10 text-center z-10">
-        <h1 class="title !mb-2">The <a href="https://thinh.io.vn" target="_blank">Devaloka's</a> Guidance</h1>
-        <p v-if="!shuffling && !cardsDealt && !selectedCard" class="mt-0 text-2xl">Seek wisdom from the divine. The cards hold your answers.</p>
-        <transition name="fade">
-          <div v-if="!shuffling && !cardsDealt && !selectedCard" class="intro-message !mt-4 !m-auto">
-            <button @click="shuffleAndDeal" class="mystical-button">
-              <span class="button-text">Xào bài</span>
-            </button>
-          </div>
-        </transition>
-      </div>
+    <div class="fixed top-10 text-center z-10">
+      <h1 class="title !mb-2">
+        The <a href="https://thinh.io.vn" target="_blank">Devaloka's</a> Guidance
+      </h1>
+      <p v-if="!shuffling && !cardsDealt && !selectedCard" class="mt-0 text-2xl">
+        Seek wisdom from the divine. The cards hold your answers.
+      </p>
+      <transition name="fade">
+        <div v-if="!shuffling && !cardsDealt && !selectedCard" class="intro-message !mt-4 !m-auto">
+          <button @click="shuffleAndDeal" class="mystical-button">
+            <span class="button-text">Xào bài</span>
+          </button>
+        </div>
+      </transition>
+    </div>
 
     <div class="cards-container" :class="{ dealt: cardsDealt }">
       <transition-group name="card" tag="div" class="cards-layout">
@@ -24,7 +28,7 @@
             'card-front': card.revealed,
             selected: selectedCardIndex === index,
             unselected: selectedCardIndex !== null && selectedCardIndex !== index,
-            'shuffle-card': shuffling
+            'shuffle-card': shuffling,
           }"
           :style="getCardStyle(index)"
           @click="selectCard(index)"
@@ -41,13 +45,29 @@
             </div>
             <div class="card-front-face">
               <div class="astro-border"></div>
-              <h3 class="magic-text" :class="selectedCardIndex || selectedCardIndex === 0 ? 'block' : 'hidden'">
-                <span v-for="(item, index) in card.title.split(' ')" :key="index" :class="selectedCard ? 'inline-block' : 'hidden'" :style="`animation-delay: ${index < 1 ? 1 : 1 + index*0.15}s`">
+              <h3
+                class="magic-text"
+                :class="selectedCardIndex || selectedCardIndex === 0 ? 'block' : 'hidden'"
+              >
+                <span
+                  v-for="(item, index) in card.title.split(' ')"
+                  :key="index"
+                  :class="selectedCard ? 'inline-block' : 'hidden'"
+                  :style="`animation-delay: ${index < 1 ? 1 : 1 + index * 0.15}s`"
+                >
                   {{ item }} <span> </span>
                 </span>
               </h3>
-              <p class="magic-text" :class="selectedCardIndex || selectedCardIndex === 0 ? 'block' : 'hidden'">
-                <span v-for="(item, index) in card.message.split(' ')"  :class="selectedCard ? 'inline-block' : 'hidden'" :key="index" :style="`animation-delay: ${index < 1 ? 2 : 2 + index*0.15}s`">
+              <p
+                class="magic-text"
+                :class="selectedCardIndex || selectedCardIndex === 0 ? 'block' : 'hidden'"
+              >
+                <span
+                  v-for="(item, index) in card.message.split(' ')"
+                  :class="selectedCard ? 'inline-block' : 'hidden'"
+                  :key="index"
+                  :style="`animation-delay: ${index < 1 ? 2 : 2 + index * 0.15}s`"
+                >
                   {{ item }} <span> </span>
                 </span>
               </p>
@@ -57,140 +77,146 @@
       </transition-group>
     </div>
 
-    <button v-if="selectedCard" @click="shuffleAndDeal" class="mystical-button reset-button">
+    <button v-if="selectedCard" @click="resetAndSuffle" class="mystical-button reset-button">
       <span class="button-text">Chọn lại</span>
     </button>
   </div>
 </template>
 
 <script setup>
-import Card from './CardItem.vue'
 import { ref, computed } from 'vue'
 import { decisions } from '@/assets/mock/decides'
 import { useWindowSize } from '@vueuse/core'
 
-    const cardsData = decisions
+const cardsData = decisions
 
-    const cards = ref([])
-    const cardsDealt = ref(false)
-    const selectedCardIndex = ref(null)
-    const hoveredCardIndex = ref(null)
-    const shuffling = ref(false);
+const cards = ref([])
+const cardsDealt = ref(false)
+const selectedCardIndex = ref(null)
+const hoveredCardIndex = ref(null)
+const shuffling = ref(false)
 
-    const { width } = useWindowSize()
+const { width } = useWindowSize()
 
-    const selectedCard = computed(() => {
-      if (selectedCardIndex.value !== null) {
-        return cards.value[selectedCardIndex.value]
-      }
-      return null
+const selectedCard = computed(() => {
+  if (selectedCardIndex.value !== null) {
+    return cards.value[selectedCardIndex.value]
+  }
+  return null
+})
+
+function shuffleAndDeal() {
+  // Reset state
+  selectedCardIndex.value = null
+
+  // Create a copy of the cards data and shuffle it
+  const shuffled = [...cardsData]
+    .map((card) => ({ ...card, revealed: false }))
+    .sort(() => Math.random() - 0.5)
+
+  // Take only 5 cards
+  cards.value = shuffled.slice(0, width.value < 500 ? 10 : 30)
+
+  // Start shuffle animation
+  shuffling.value = true
+
+  // After shuffle animation completes, deal the cards
+  setTimeout(() => {
+    shuffling.value = false
+
+    // Set cards as dealt after a short delay
+    setTimeout(() => {
+      cardsDealt.value = true
     })
+  }, 2000) // Shuffle animation duration
+}
 
-    function shuffleAndDeal() {
-      resetCards()
-      // Reset state
-      selectedCardIndex.value = null;
+function selectCard(index) {
+  if (!cardsDealt.value || selectedCardIndex.value !== null || shuffling.value) return
 
-      // Create a copy of the cards data and shuffle it
-      const shuffled = [...cardsData]
-        .map(card => ({ ...card, revealed: false }))
-        .sort(() => Math.random() - 0.5);
+  selectedCardIndex.value = index
 
-      // Take only 5 cards
-      cards.value = shuffled.slice(0, width.value < 500 ? 10 : 30);
+  // Reveal the card after it moves to center
+  setTimeout(() => {
+    cards.value[index].revealed = true
+  }, 2000)
+}
 
-      // Start shuffle animation
-      shuffling.value = true;
+function resetAndSuffle() {
+  resetCards()
+  setTimeout(() => {
+    shuffleAndDeal()
+  }, 500)
+}
 
-      // After shuffle animation completes, deal the cards
-      setTimeout(() => {
-        shuffling.value = false;
+function resetCards() {
+  cardsDealt.value = false
+  selectedCardIndex.value = null
+  cards.value = []
+}
 
-        // Set cards as dealt after a short delay
-        setTimeout(() => {
-          cardsDealt.value = true;
-        });
-      }, 4000); // Shuffle animation duration
+function onCardHover(index, isHovered) {
+  hoveredCardIndex.value = isHovered ? index : null
+}
+
+function getCardStyle(index) {
+  if (shuffling.value) {
+    // During shuffle animation, each card gets a random position
+    // This is handled by CSS, so we just return an empty style
+    return {}
+  }
+  if (!cardsDealt.value) {
+    // Initial position (stacked)
+    return {
+      transform: `translateX(0) translateY(0) rotate(0deg)`,
+      transition: 'none',
     }
+  }
 
-    function selectCard(index) {
-      if (!cardsDealt.value || selectedCardIndex.value !== null || shuffling.value) return
-
-      selectedCardIndex.value = index
-
-      // Reveal the card after it moves to center
-      setTimeout(() => {
-        cards.value[index].revealed = true
-      }, 2000)
+  if (selectedCardIndex.value === index) {
+    // Selected card moves to center
+    return {
+      transform: `translateX(0) translateY(0) rotate(0deg) scale(1.2)`,
+      zIndex: 10,
+      transitionDuration: '1s',
     }
+  }
 
-    function resetCards() {
-      cardsDealt.value = false
-      selectedCardIndex.value = null
-      cards.value = []
+  if (selectedCardIndex.value !== null) {
+    // Other cards move away when one is selected
+    const direction = index < selectedCardIndex.value ? -1 : 1
+    return {
+      transform: `translateX(${direction * 60}vw) translateY(20vh) rotate(${direction * 20}deg)`,
+      opacity: 0.3,
+      transitionDuration: '1.2s',
     }
+  }
 
-    function onCardHover(index, isHovered) {
-      hoveredCardIndex.value = isHovered ? index : null
-    }
+  // Spread out the cards in a fan pattern
+  const totalCards = cards.value.length
+  const spreadWidth = width.value < 500 ? 100 : 600 // percentage of container width
+  const angle = width.value < 500 ? 40 : 20 // maximum rotation angle
 
-    function getCardStyle(index) {
-      if (shuffling.value) {
-        // During shuffle animation, each card gets a random position
-        // This is handled by CSS, so we just return an empty style
-        return {};
-      }
-      if (!cardsDealt.value) {
-        // Initial position (stacked)
-        return {
-          transform: `translateX(0) translateY(0) rotate(0deg)`,
-          transition: 'none',
-        }
-      }
+  // Calculate position in the fan
+  const position = index - (totalCards - 1) / 2
+  const xPercent = (position / (totalCards - 1)) * spreadWidth
+  const rotation = position * (angle / ((totalCards - 1) / 2))
 
-      if (selectedCardIndex.value === index) {
-        // Selected card moves to center
-        return {
-          transform: `translateX(0) translateY(0) rotate(0deg) scale(1.2)`,
-          zIndex: 10,
-        }
-      }
+  // Apply hover effect - only move up on Y axis when hovered
+  const yOffset = hoveredCardIndex.value === index ? -40 : 0
 
-      if (selectedCardIndex.value !== null) {
-        // Other cards move away when one is selected
-        const direction = index < selectedCardIndex.value ? -1 : 1
-        return {
-          transform: `translateX(${direction * 60}vw) translateY(20vh) rotate(${direction * 20}deg)`,
-          opacity: 0.3,
-        }
-      }
-
-      // Spread out the cards in a fan pattern
-      const totalCards = cards.value.length
-      const spreadWidth = width.value < 500 ? 100 : 600 // percentage of container width
-      const angle = width.value < 500 ? 80 : 20 // maximum rotation angle
-
-      // Calculate position in the fan
-      const position = index - (totalCards - 1) / 2
-      const xPercent = (position / (totalCards - 1)) * spreadWidth
-      const rotation = position * (angle / ((totalCards - 1) / 2))
-
-      // Apply hover effect - only move up on Y axis when hovered
-      const yOffset = hoveredCardIndex.value === index ? -20 : 0
-
-      return {
-        transform: `translateX(${xPercent}%) translateY(${yOffset}px) rotate(${rotation}deg)`,
-        boxShadow:
-          hoveredCardIndex.value === index
-            ? '0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 1)'
-            : '0 10px 30px rgba(0, 0, 0, 0.5)',
-        zIndex: index,
-      }
-    }
+  return {
+    transform: `translateX(${xPercent}%) translateY(${yOffset}px) rotate(${rotation}deg)`,
+    boxShadow:
+      hoveredCardIndex.value === index
+        ? '0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 215, 0, 1)'
+        : '0 10px 30px rgba(0, 0, 0, 0.5)',
+    zIndex: index,
+  }
+}
 </script>
 
 <style scoped lang="scss">
-
 @keyframes appearAnimation {
   0% {
     opacity: 0;
@@ -211,7 +237,7 @@ import { useWindowSize } from '@vueuse/core'
 .magic-text span {
   display: inline-block;
   opacity: 0;
-  animation: appearAnimation 0.5s forwards
+  animation: appearAnimation 0.5s forwards;
 }
 
 .mystical-container {
@@ -327,11 +353,12 @@ import { useWindowSize } from '@vueuse/core'
 }
 
 .shuffle-card {
-  animation: shuffle 4s ease-in-out;
+  animation: shuffle 2s ease-in-out;
 }
 
 @keyframes shuffle {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0) translateY(0) rotate(0deg);
   }
   10% {
@@ -400,7 +427,7 @@ import { useWindowSize } from '@vueuse/core'
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d ;
+  transform-style: preserve-3d;
   transition: transform 1s ease-in-out;
 }
 
@@ -442,7 +469,11 @@ import { useWindowSize } from '@vueuse/core'
   border-radius: 50%;
   border: 2px solid rgba(255, 215, 0, 0.7);
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-  background: radial-gradient(circle at center, rgba(123, 78, 208, 0.2) 0%, rgba(15, 5, 36, 0.8) 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(123, 78, 208, 0.2) 0%,
+    rgba(15, 5, 36, 0.8) 70%
+  );
   z-index: 1;
 }
 
@@ -553,7 +584,11 @@ import { useWindowSize } from '@vueuse/core'
   left: -50%;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, rgba(123, 78, 208, 0.1) 0%, rgba(123, 78, 208, 0) 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(123, 78, 208, 0.1) 0%,
+    rgba(123, 78, 208, 0) 70%
+  );
   transform-origin: center center;
   animation: glow 10s linear infinite;
   pointer-events: none;
@@ -584,7 +619,7 @@ import { useWindowSize } from '@vueuse/core'
   transform: rotateY(180deg);
   position: absolute;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-  z-index:5;
+  z-index: 5;
 }
 
 .card-front-face h3 {

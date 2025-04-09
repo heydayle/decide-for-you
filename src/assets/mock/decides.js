@@ -713,8 +713,19 @@ export const decisions = [
       "id": 143,
       "title": "Tĩnh lặng",
       "message": "Mọi điều bạn cần biết – đều có trong sự tĩnh lặng của bạn."
-    },{
-      id: 1,
+    },
+    { id: 144, title: "Bạn có", message: `Bạn có thể bắt đầu lại từ hôm nay.` },
+    { id: 145, title: "Nếu không", message: `Nếu không hành động, không gì thay đổi.` },
+    { id: 146, title: "Mọi điều", message: `Mọi điều lớn lao bắt đầu từ bước nhỏ.` },
+    { id: 147, title: "Im lặng", message: `Im lặng cũng là một quyết định.` },
+    { id: 148, title: "Bạn không", message: `Bạn không cần được ai đồng ý để sống thật.` },
+    { id: 149, title: "Sự thay", message: `Sự thay đổi bắt đầu từ sự thật.` },
+    { id: 150, title: "Không phải", message: `Không phải ai cũng hiểu – nhưng bạn cần hiểu mình.` },
+    { id: 151, title: "Bạn có", message: `Bạn có thể từ chối điều không còn phù hợp.` },
+    { id: 152, title: "Không cần", message: `Không cần phải biết hết – chỉ cần bước.` },
+    { id: 153, title: "Đừng tìm", message: `Đừng tìm lý do – hãy tìm cách.` },
+    {
+      id: 154,
       title: "Thời Gian",
       message: "Đầu tư thời gian vào điều quan trọng nhất, không phải điều khẩn cấp nhất."
     },
