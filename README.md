@@ -1,8 +1,12 @@
 # SUPPORT BY
 
-| ChatGPT | v0  | Claude | Devaloka |
-|---------|-----|--------|----------|
-| 20%     | 20% |  20%   | 40%      |
+|                           |     |
+|---------------------------|-----|
+| ChatGPT(Content)          | 20% |
+| v0 (UI)                   | 20% |
+| Claude (Logic)            | 20% |
+| Devaloka (coding + debug) | 40% |
+
 
 
 This template should help get you started developing with Vue 3 in Vite.
