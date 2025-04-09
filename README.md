@@ -1,4 +1,9 @@
-# app
+# SUPPORT BY
+
+| ChatGPT | v0  | Claude | Devaloka |
+|---------|-----|--------|----------|
+| 20%     | 20% |  20%   | 40%      |
+
 
 This template should help get you started developing with Vue 3 in Vite.
 
