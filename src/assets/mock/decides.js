@@ -362,7 +362,7 @@ export const decisions = [
     {
       "id": 73,
       "title": "Bỏ lỡ",
-      "message": "Đừng chọn theo nỗi sợ bỏ lỡ."
+      "message": "Đừng sợ những gì bạn sắp bỏ lỡ."
     },
     {
       "id": 74,
@@ -781,12 +781,12 @@ export const decisions = [
     },
     {
       id: 12,
-      title: "Đặt Mục tiêu",
+      title: "Mục Tiêu",
       message: "Đặt mục tiêu đủ cao để truyền cảm hứng nhưng đủ thực tế để đạt được."
     },
     {
       id: 13,
-      title: "Tự Chăm sóc",
+      title: "Chăm Sóc",
       message: "Ưu tiên sức khỏe của bản thân trước khi giúp đỡ người khác."
     },
     {
@@ -877,7 +877,7 @@ export const decisions = [
     {
       id: 31,
       title: "Tài Chính",
-      message: "Chi tiêu dưới khả năng của bạn, không phải bằng hoặc trên nó."
+      message: "Chi tiêu dưới khả năng của bạn."
     },
     {
       id: 32,
@@ -892,7 +892,7 @@ export const decisions = [
     {
       id: 34,
       title: "Dừng Lại",
-      message: "Dừng việc so sánh bản thân với người khác, tập trung vào tiến bộ cá nhân."
+      message: "Dừng việc so sánh bản thân với người khác."
     },
     {
       id: 35,
@@ -902,7 +902,7 @@ export const decisions = [
     {
       id: 36,
       title: "Cân Bằng",
-      message: "Tạo sự cân bằng giữa công việc và cuộc sống cá nhân."
+      message: "Cân bằng giữa công việc và cuộc sống cá nhân."
     },
     {
       id: 37,
@@ -911,33 +911,33 @@ export const decisions = [
     },
     {
       id: 38,
-      title: "Lắng Nghe",
+      title: "Nghe Nhiều Hơn",
       message: "Lắng nghe ý kiến trái chiều để mở rộng tầm nhìn của bạn."
     },
     {
       id: 39,
-      title: "Kiên Nhẫn",
+      title: "Không Vội",
       message: "Kiên nhẫn với tiến trình, không vội vàng đạt kết quả."
     },
     {
       id: 40,
-      title: "Công Nhận",
+      title: "Giới Hạn",
       message: "Công nhận giới hạn của bản thân và biết khi nào cần hỗ trợ."
     },
     {
       id: 41,
-      title: "Từ Bỏ",
-      message: "Từ bỏ những gì không còn phục vụ bạn để tạo không gian cho điều mới."
+      title: "Khởi Đầu",
+      message: "Từ bỏ những gì không dùng, tạo không gian cho điều mới."
     },
     {
       id: 42,
       title: "Phá Vỡ",
-      message: "Phá vỡ những khuôn mẫu cũ để tạo ra thay đổi thực sự."
+      message: "Phá vỡ những khuôn mẫu cũ."
     },
     {
       id: 43,
-      title: "Tự Tin",
-      message: "Tin vào khả năng của bản thân ngay cả khi không ai khác tin."
+      title: "Bản Thân",
+      message: "Tin vào khả năng của bản thân bất kể điều gì."
     },
     {
       id: 44,
@@ -1077,7 +1077,7 @@ export const decisions = [
     {
       id: 71,
       title: "Tiến Bước",
-      message: "Tiến về phía trước dù phải với tốc độ chậm."
+      message: "Tiến về phía trước mặt kệ tốc độ."
     },
     {
       id: 72,
@@ -1096,13 +1096,13 @@ export const decisions = [
     },
     {
       id: 75,
-      title: "Tìm Niềm vui",
-      message: "Tìm niềm vui trong quá trình, không chỉ kết quả cuối cùng."
+      title: "Niềm Vui",
+      message: "Tìm niềm vui trong quá trình, không phải ở kết quả."
     },
     {
       id: 76,
       title: "Đường Riêng",
-      message: "Đi theo con đường riêng của bạn, không phải con đường người khác đã vạch ra."
+      message: "Đi theo con đường riêng của bạn."
     },
     {
       id: 77,
@@ -1111,23 +1111,23 @@ export const decisions = [
     },
     {
       id: 78,
-      title: "Cam Kết",
+      title: "Kỷ Luật",
       message: "Cam kết với mục tiêu của bạn ngay cả khi khó khăn."
     },
     {
       id: 79,
       title: "Chất Lượng",
-      message: "Chọn chất lượng thay vì số lượng trong mọi khía cạnh cuộc sống."
+      message: "Chọn chất lượng thay vì số lượng."
     },
     {
       id: 80,
       title: "Biết Mình",
-      message: "Hiểu rõ điểm mạnh và điểm yếu của bản thân trước khi đưa ra quyết định."
+      message: "Hiểu rõ điểm mạnh và điểm yếu của bản thân."
     },
     {
       id: 81,
-      title: "Chiến Thắng",
-      message: "Đánh bại nỗi sợ thất bại bằng cách hành động mỗi ngày."
+      title: "Xuất Phát",
+      message: "Hành động mỗi ngày là cách đánh bại nỗi sợ!"
     },
     {
       id: 82,
@@ -1137,11 +1137,11 @@ export const decisions = [
     {
       id: 83,
       title: "Trao Đổi",
-      message: "Giao tiếp rõ ràng về mong đợi và giới hạn của bạn."
+      message: "Giao tiếp rõ ràng và giới hạn."
     },
     {
       id: 84,
-      title: "Chủ Động",
+      title: "Kết Thúc",
       message: "Chủ động giải quyết vấn đề thay vì chờ đợi chúng trở nên tồi tệ hơn."
     },
     {

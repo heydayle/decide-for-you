@@ -11,7 +11,7 @@
       <transition name="fade">
         <div v-if="!shuffling && !cardsDealt && !selectedCard" class="intro-message !mt-4 !m-auto">
           <button @click="shuffleAndDeal" class="mystical-button">
-            <span class="button-text">Xào bài</span>
+            <span class="button-text">SHUFFLE</span>
           </button>
         </div>
       </transition>
@@ -78,7 +78,7 @@
     </div>
 
     <button v-if="selectedCard" @click="resetAndSuffle" class="mystical-button reset-button">
-      <span class="button-text">Chọn lại</span>
+      <span class="button-text">AGAIN</span>
     </button>
   </div>
 </template>
@@ -105,38 +105,76 @@ const selectedCard = computed(() => {
   return null
 })
 
+const previousDeals = [];
+const MAX_HISTORY = 3;
+
 function shuffleAndDeal() {
-  // Reset state
   selectedCardIndex.value = null
 
-  // Create a copy of the cards data and shuffle it
-  const shuffled = [...cardsData]
-    .map((card) => ({ ...card, revealed: false }))
-    .sort(() => Math.random() - 0.5)
+  let newDeal;
+  let attempts = 0;
+  const maxAttempts = 10;
 
-  // Take only 5 cards
-  cards.value = shuffled.slice(0, width.value < 500 ? 10 : 30)
+  do {
+    const shuffled = [...cardsData]
+      .map((card) => ({ ...card, revealed: false }))
+      .sort(() => Math.random() - 0.5);
 
-  // Start shuffle animation
+    const cardCount = width.value < 500 ? 10 : 30;
+    newDeal = shuffled.slice(0, cardCount);
+
+    const isDuplicate = isCardSetDuplicate(newDeal);
+
+    if (!isDuplicate || attempts >= maxAttempts) {
+      break;
+    }
+
+    attempts++;
+  } while (true);
+
+  addToHistory(newDeal);
+  cards.value = newDeal;
   shuffling.value = true
 
-  // After shuffle animation completes, deal the cards
   setTimeout(() => {
     shuffling.value = false
-
-    // Set cards as dealt after a short delay
     setTimeout(() => {
       cardsDealt.value = true
     })
-  }, 2000) // Shuffle animation duration
+  }, 2000)
+}
+
+function isCardSetDuplicate(newCards) {
+  for (const previousSet of previousDeals) {
+    const isSame = areCardSetsEqual(newCards, previousSet);
+    if (isSame) return true;
+  }
+  return false;
+}
+
+function areCardSetsEqual(set1, set2) {
+  if (set1.length !== set2.length) return false;
+
+  const set1Ids = set1.map(card => card.id || card.uniqueProperty).sort();
+  const set2Ids = set2.map(card => card.id || card.uniqueProperty).sort();
+
+  return set1Ids.every((id, index) => id === set2Ids[index]);
+}
+
+function addToHistory(cardSet) {
+  const cardSetCopy = cardSet.map(card => ({ ...card }));
+
+  previousDeals.unshift(cardSetCopy);
+
+  if (previousDeals.length > MAX_HISTORY) {
+    previousDeals.pop();
+  }
 }
 
 function selectCard(index) {
   if (!cardsDealt.value || selectedCardIndex.value !== null || shuffling.value) return
-
   selectedCardIndex.value = index
 
-  // Reveal the card after it moves to center
   setTimeout(() => {
     cards.value[index].revealed = true
   }, 2000)
@@ -574,25 +612,6 @@ function getCardStyle(index) {
   bottom: 20px;
   right: 20px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23ffd700' stroke-width='2'/%3E%3Cpath d='M50,10 A40,40 0 0,0 50,90 A40,40 0 0,1 50,10' fill='%23ffd700' opacity='0.5'/%3E%3C/svg%3E");
-}
-
-/* Add a subtle glow animation to the card back */
-.card-back-face::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(123, 78, 208, 0.1) 0%,
-    rgba(123, 78, 208, 0) 70%
-  );
-  transform-origin: center center;
-  animation: glow 10s linear infinite;
-  pointer-events: none;
-  z-index: 0;
 }
 
 @keyframes glow {
