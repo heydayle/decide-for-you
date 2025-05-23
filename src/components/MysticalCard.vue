@@ -3,7 +3,7 @@
     <div class="mystical-background"></div>
     <div class="fixed top-10 text-center z-10">
       <h1 class="title !mb-2">
-        The <a href="https://thinh.io.vn" target="_blank">Devaloka's</a> Guidance
+        The <a href="https://devaloka.dev" target="_blank">Devaloka's</a> Guidance
       </h1>
       <p v-if="!shuffling && !cardsDealt && !selectedCard" class="mt-0 text-2xl">
         Seek wisdom from the divine. The cards hold your answers.
